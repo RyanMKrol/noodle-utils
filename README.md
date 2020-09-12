@@ -1,4 +1,4 @@
-# noodle-utils *1.0.0*
+# noodle-utils *1.0.1*
 
 
 
@@ -91,33 +91,6 @@ Method to push items to our queue
 
 
 
-### src/sleep.js
-
-
-#### sleep(time) 
-
-Method to handle sequential tasks that rely on the output of the previous task
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| time | `number`  | - The time, in ms, to sleep for | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-
 ### src/pipeline.js
 
 
@@ -141,6 +114,33 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 
 - `any`  The result of the pipeline processing
+
+
+
+
+### src/sleep.js
+
+
+#### sleep(time) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| time | `number`  | - The time, in ms, to sleep for | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
 
 
 
