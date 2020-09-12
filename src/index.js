@@ -1,3 +1,4 @@
-import customFunction from './module';
+import pipeline from './pipeline';
+import sleep from './sleep';
 
-export default customFunction;
+export { pipeline, sleep };
