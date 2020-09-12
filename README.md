@@ -91,33 +91,6 @@ Method to push items to our queue
 
 
 
-### src/pipeline.js
-
-
-#### pipeline(fns) 
-
-Method to handle sequential tasks that rely on the output of the previous task
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| fns | `Array.<Function>`  | - The functions you would like to run over the input | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `any`  The result of the pipeline processing
-
-
-
-
 ### src/sleep.js
 
 
@@ -141,6 +114,33 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 
 -  Nothing
+
+
+
+
+### src/pipeline.js
+
+
+#### pipeline(fns) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| fns | `Array.<Function>`  | - The functions you would like to run over the input | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `any`  The result of the pipeline processing
 
 
 
