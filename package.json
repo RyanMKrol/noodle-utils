@@ -22,7 +22,10 @@
       "pre-commit": "./scripts/husky"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "noodle-dynamo": "^1.0.6",
+    "sizeof": "^1.0.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",

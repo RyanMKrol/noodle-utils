@@ -2,12 +2,28 @@
 
 
 
-### src/sleep.js
+### src/dynamoPersistanceQueue.js
 
 
-#### sleep(time) 
+#### new DynamoPersistanceQueue() 
 
-Method to handle sequential tasks that rely on the output of the previous task
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoPersistanceQueue.constructor(dynamoCredentials) 
+
+Constructor for DynamoPersistanceQueue
 
 
 
@@ -16,7 +32,53 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| time | `number`  | - The time, in ms, to sleep for | &nbsp; |
+| dynamoCredentials | `DynamoCredentials`  | - the credentials for your Dynamo table | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoPersistanceQueue.push(item) 
+
+Method to push items to our queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| item | `object`  | - Any item that we want to push to Dynamo | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
+
+
+
+#### DynamoPersistanceQueue.pushBatch(batch) 
+
+Method to push items to our queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| batch | `Array.<object>`  | - A batch of items to push into the queue | &nbsp; |
 
 
 
@@ -52,6 +114,33 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 
 - `any`  The result of the pipeline processing
+
+
+
+
+### src/sleep.js
+
+
+#### sleep(time) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| time | `number`  | - The time, in ms, to sleep for | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
 
 
 
