@@ -7,3 +7,5 @@ set -e;
 npm run build;
 npx sort-package-json package.json;
 git add package.json;
+npm run docs;
+git add README.md
