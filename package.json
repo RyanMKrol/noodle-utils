@@ -14,8 +14,7 @@
   "scripts": {
     "build": "npm run lint && shx rm -rf build && ./node_modules/.bin/babel src --out-dir build",
     "docs": "doxdox 'src/**/*.js' --layout markdown --output README.md",
-    "lint": "eslint src/ --ext .js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint src/ --ext .js"
   },
   "husky": {
     "hooks": {
