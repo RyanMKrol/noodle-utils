@@ -10,4 +10,14 @@
  */
 const pipeline = (...fns) => (x) => fns.reduce((v, f) => v.then(f), Promise.resolve(x));
 
-export default pipeline;
+/**
+ * This method allows you to pass more arguments through the pipeline via a closure
+ *
+ * @param func - The method you want to run in the pipeline
+ * @param {...any} args - the closure args you want to use in the method
+ */
+function pipelineClosureMethod(func, ...args) {
+  return async (x) => func(x, ...args);
+}
+
+export { pipeline, pipelineClosureMethod };

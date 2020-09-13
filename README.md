@@ -91,6 +91,33 @@ Method to push items to our queue
 
 
 
+### src/sleep.js
+
+
+#### sleep(time) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| time | `number`  | - The time, in ms, to sleep for | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
+
+
+
+
 ### src/pipeline.js
 
 
@@ -117,13 +144,9 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 
 
+#### pipelineClosureMethod(func, args) 
 
-### src/sleep.js
-
-
-#### sleep(time) 
-
-Method to handle sequential tasks that rely on the output of the previous task
+This method allows you to pass more arguments through the pipeline via a closure
 
 
 
@@ -132,7 +155,8 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| time | `number`  | - The time, in ms, to sleep for | &nbsp; |
+| func |  | - The method you want to run in the pipeline | &nbsp; |
+| args | `any`  | - the closure args you want to use in the method | &nbsp; |
 
 
 
@@ -140,7 +164,7 @@ Method to handle sequential tasks that rely on the output of the previous task
 ##### Returns
 
 
--  Nothing
+- `Void`
 
 
 
