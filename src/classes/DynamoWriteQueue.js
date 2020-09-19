@@ -1,7 +1,7 @@
 import sizeof from 'sizeof';
 import DynamoDBWrapper from 'noodle-dynamo';
 
-import SizeExceeded from './errors';
+import { SizeExceeded } from '../errors';
 
 // I only want my Dynamo table using 5 Write capacity units
 // A WCU can be thought of as a 1K write
@@ -26,13 +26,13 @@ const MAX_WRITE_DATA_SIZE_BYTES = 1000;
  *
  * @class
  */
-export default class DynamoPersistanceQueue {
+export default class DynamoWriteQueue {
   /**
-   * Constructor for DynamoPersistanceQueue
+   * Constructor for DynamoWriteQueue
    *
    * @param {DynamoCredentials} dynamoCredentials The credentials for your Dynamo table
-   * @param dynamoRegion The region of the Dynamo table we're using
-   * @param tableName The name of the table we want to store data in
+   * @param {string} dynamoRegion The region of the Dynamo table we're using
+   * @param {string} tableName The name of the table we want to store data in
    */
   constructor(dynamoCredentials, dynamoRegion, tableName) {
     this.dynamoClient = new DynamoDBWrapper(dynamoCredentials, dynamoRegion);

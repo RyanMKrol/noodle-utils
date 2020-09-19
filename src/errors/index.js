@@ -1,1 +1,2 @@
-export { default } from './SizeExceeded';
+export { default as SizeExceeded } from './SizeExceeded';
+export { default as DataNotFound } from './DataNotFound';

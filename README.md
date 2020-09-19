@@ -2,10 +2,10 @@
 
 
 
-### src/dynamoPersistanceQueue.js
+### src/classes/DynamoReadBatch.js
 
 
-#### new DynamoPersistanceQueue() 
+#### new DynamoReadBatch() 
 
 Creates a new Queue for pushing data to Dynamo.
 
@@ -21,9 +21,9 @@ Creates a new Queue for pushing data to Dynamo.
 
 
 
-#### DynamoPersistanceQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
+#### DynamoReadBatch.constructor(dynamoCredentials, dynamoRegion, tableName) 
 
-Constructor for DynamoPersistanceQueue
+Constructor for DynamoWriteQueue
 
 
 
@@ -33,8 +33,8 @@ Constructor for DynamoPersistanceQueue
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
 | dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
-| dynamoRegion |  | The region of the Dynamo table we're using | &nbsp; |
-| tableName |  | The name of the table we want to store data in | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
 
 
 
@@ -46,7 +46,52 @@ Constructor for DynamoPersistanceQueue
 
 
 
-#### DynamoPersistanceQueue.push(item) 
+
+### src/classes/DynamoWriteQueue.js
+
+
+#### new DynamoWriteQueue() 
+
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoWriteQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
+
+Constructor for DynamoWriteQueue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoWriteQueue.push(item) 
 
 Method to push items to our queue
 
@@ -69,7 +114,7 @@ Method to push items to our queue
 
 
 
-#### DynamoPersistanceQueue.pushBatch(batch) 
+#### DynamoWriteQueue.pushBatch(batch) 
 
 Method to push items to our queue
 
@@ -93,34 +138,7 @@ Method to push items to our queue
 
 
 
-### src/sleep.js
-
-
-#### sleep(time) 
-
-Method to handle sequential tasks that rely on the output of the previous task
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| time | `number`  | The time, in ms, to sleep for | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-
-### src/pipeline.js
+### src/methods/pipeline.js
 
 
 #### pipeline(fns) 
@@ -157,7 +175,7 @@ This method allows you to pass more arguments through the pipeline via a closure
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| func |  | The method you want to run in the pipeline | &nbsp; |
+| func | `Function`  | The method you want to run in the pipeline | &nbsp; |
 | args | `any`  | The closure args you want to use in the method | &nbsp; |
 
 
@@ -166,7 +184,34 @@ This method allows you to pass more arguments through the pipeline via a closure
 ##### Returns
 
 
-- `Void`
+- `Function`  A method to be called with a new argumnet as well  as those captured in the closure
+
+
+
+
+### src/methods/sleep.js
+
+
+#### sleep(time) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| time | `number`  | The time, in ms, to sleep for | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
 
 
 

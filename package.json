@@ -22,6 +22,8 @@
     }
   },
   "dependencies": {
+    "async": "^3.2.0",
+    "core-js": "^3.6.5",
     "noodle-dynamo": "^1.0.6",
     "sizeof": "^1.0.0"
   },

@@ -13,8 +13,10 @@ const pipeline = (...fns) => (x) => fns.reduce((v, f) => v.then(f), Promise.reso
 /**
  * This method allows you to pass more arguments through the pipeline via a closure
  *
- * @param func The method you want to run in the pipeline
+ * @param {Function} func The method you want to run in the pipeline
  * @param {...any} args The closure args you want to use in the method
+ * @returns {Function} A method to be called with a new argumnet as well
+ *  as those captured in the closure
  */
 function pipelineClosureMethod(func, ...args) {
   return async (x) => func(x, ...args);
