@@ -21,7 +21,7 @@ Creates a new Queue for pushing data to Dynamo.
 
 
 
-#### DynamoPersistanceQueue.constructor(dynamoCredentials) 
+#### DynamoPersistanceQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
 
 Constructor for DynamoPersistanceQueue
 
@@ -32,7 +32,9 @@ Constructor for DynamoPersistanceQueue
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| dynamoCredentials | `DynamoCredentials`  | - the credentials for your Dynamo table | &nbsp; |
+| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
+| dynamoRegion |  | The region of the Dynamo table we're using | &nbsp; |
+| tableName |  | The name of the table we want to store data in | &nbsp; |
 
 
 
@@ -55,7 +57,7 @@ Method to push items to our queue
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| item | `object`  | - Any item that we want to push to Dynamo | &nbsp; |
+| item | `object`  | Any item that we want to push to Dynamo | &nbsp; |
 
 
 
@@ -78,34 +80,7 @@ Method to push items to our queue
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| batch | `Array.<object>`  | - A batch of items to push into the queue | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-
-### src/sleep.js
-
-
-#### sleep(time) 
-
-Method to handle sequential tasks that rely on the output of the previous task
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| time | `number`  | - The time, in ms, to sleep for | &nbsp; |
+| batch | `Array.<object>`  | A batch of items to push into the queue | &nbsp; |
 
 
 
@@ -132,7 +107,7 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| fns | `Array.<Function>`  | - The functions you would like to run over the input | &nbsp; |
+| fns | `Array.<Function>`  | The functions you would like to run over the input | &nbsp; |
 
 
 
@@ -155,8 +130,8 @@ This method allows you to pass more arguments through the pipeline via a closure
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| func |  | - The method you want to run in the pipeline | &nbsp; |
-| args | `any`  | - the closure args you want to use in the method | &nbsp; |
+| func |  | The method you want to run in the pipeline | &nbsp; |
+| args | `any`  | The closure args you want to use in the method | &nbsp; |
 
 
 
@@ -165,6 +140,33 @@ This method allows you to pass more arguments through the pipeline via a closure
 
 
 - `Void`
+
+
+
+
+### src/sleep.js
+
+
+#### sleep(time) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| time | `number`  | The time, in ms, to sleep for | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
 
 
 

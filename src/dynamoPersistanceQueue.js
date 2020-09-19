@@ -17,8 +17,8 @@ const MAX_WRITE_DATA_SIZE_BYTES = 1000;
 /**
  * @typedef DynamoCredentials
  * @type {object}
- * @property {string} accessKeyId - The access ID for your dynamo table
- * @property {string} secretAccessKey - The access key for your dynamo table
+ * @property {string} accessKeyId The access ID for your dynamo table
+ * @property {string} secretAccessKey The access key for your dynamo table
  */
 
 /**
@@ -30,11 +30,14 @@ export default class DynamoPersistanceQueue {
   /**
    * Constructor for DynamoPersistanceQueue
    *
-   * @param {DynamoCredentials} dynamoCredentials - the credentials for your Dynamo table
+   * @param {DynamoCredentials} dynamoCredentials The credentials for your Dynamo table
+   * @param dynamoRegion The region of the Dynamo table we're using
+   * @param tableName The name of the table we want to store data in
    */
-  constructor(dynamoCredentials) {
-    this.dynamoClient = new DynamoDBWrapper(dynamoCredentials, 'us-east-2');
+  constructor(dynamoCredentials, dynamoRegion, tableName) {
+    this.dynamoClient = new DynamoDBWrapper(dynamoCredentials, dynamoRegion);
     this.queue = [];
+    this.tableName = tableName;
 
     // setup the event queue
     setInterval(async () => {
@@ -45,7 +48,7 @@ export default class DynamoPersistanceQueue {
   /**
    * Method to push items to our queue
    *
-   * @param {object} item - Any item that we want to push to Dynamo
+   * @param {object} item Any item that we want to push to Dynamo
    * @returns {void} Nothing
    */
   push(item) {
@@ -59,7 +62,7 @@ export default class DynamoPersistanceQueue {
   /**
    * Method to push items to our queue
    *
-   * @param {Array.<object>} batch - A batch of items to push into the queue
+   * @param {Array.<object>} batch A batch of items to push into the queue
    * @returns {void} Nothing
    */
   pushBatch(batch) {
@@ -81,7 +84,7 @@ export default class DynamoPersistanceQueue {
       const batch = this.queue.splice(0, PROVISIONED_WRITE_CAPACITY_UNITS);
 
       batch.forEach(async (item) => {
-        this.dynamoClient.writeTable('TickerData', item);
+        this.dynamoClient.writeTable(this.tableName, item);
       });
     }
   }
