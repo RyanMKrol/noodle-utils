@@ -1,49 +1,4 @@
-# noodle-utils *2.0.0*
-
-
-
-### src/classes/DynamoReadBatch.js
-
-
-#### new DynamoReadBatch() 
-
-Creates a new Queue for pushing data to Dynamo.
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoReadBatch.constructor(dynamoCredentials, dynamoRegion, tableName) 
-
-Constructor for DynamoWriteQueue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
-| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
-| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
+# noodle-utils *2.0.1*
 
 
 
@@ -134,6 +89,51 @@ Method to push items to our queue
 
 
 -  Nothing
+
+
+
+
+### src/classes/DynamoReadBatch.js
+
+
+#### new DynamoReadBatch() 
+
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadBatch.constructor(dynamoCredentials, dynamoRegion, tableName) 
+
+Constructor for DynamoWriteQueue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
 
 
 
