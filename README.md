@@ -138,6 +138,33 @@ Constructor for DynamoWriteQueue
 
 
 
+### src/methods/sleep.js
+
+
+#### sleep(time) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| time | `number`  | The time, in ms, to sleep for | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
+
+
+
+
 ### src/methods/pipeline.js
 
 
@@ -185,33 +212,6 @@ This method allows you to pass more arguments through the pipeline via a closure
 
 
 - `Function`  A method to be called with a new argumnet as well  as those captured in the closure
-
-
-
-
-### src/methods/sleep.js
-
-
-#### sleep(time) 
-
-Method to handle sequential tasks that rely on the output of the previous task
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| time | `number`  | The time, in ms, to sleep for | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
 
 
 

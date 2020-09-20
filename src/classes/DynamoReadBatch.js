@@ -69,7 +69,9 @@ export default class DynamoReadBatch {
           throw new DataNotFound();
         }
 
-        data[key] = readData;
+        const dataItem = readData.Items[0];
+
+        data[key] = dataItem;
       } catch (e) {
         data[key] = e;
       }
