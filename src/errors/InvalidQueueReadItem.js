@@ -1,9 +1,9 @@
 /** @memberof errors */
 
 /**
- * Used when an item isn't found in Dynamo on read
+ * Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
  */
-class DataNotFound extends Error {
+class InvalidQueueReadItem extends Error {
   /**
    * Constructor for error
    *
@@ -15,12 +15,12 @@ class DataNotFound extends Error {
 
     // Maintains proper stack trace for where our error was thrown (only available on V8)
     if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, DataNotFound);
+      Error.captureStackTrace(this, InvalidQueueReadItem);
     }
 
-    this.Error = 'DataNotFound';
-    this.StatusCode = 404;
+    this.Error = 'InvalidQueueReadItem';
+    this.StatusCode = 400;
   }
 }
 
-export default DataNotFound;
+export default InvalidQueueReadItem;
