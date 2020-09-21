@@ -1,3 +1,5 @@
+/** @memberof classes */
+
 import sizeof from 'sizeof';
 import DynamoDBWrapper from 'noodle-dynamo';
 

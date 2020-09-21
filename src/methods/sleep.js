@@ -1,6 +1,4 @@
-/**
- * @module Sleep
- */
+/** @memberof methods */
 
 /**
  * Method to handle sequential tasks that rely on the output of the previous task

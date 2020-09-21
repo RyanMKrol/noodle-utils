@@ -1,4 +1,6 @@
-export default class SizeExceeded extends Error {
+/** @memberof errors */
+
+class SizeExceeded extends Error {
   constructor(...params) {
     // Pass remaining arguments (including vendor specific ones) to parent constructor
     super(...params);
@@ -12,3 +14,5 @@ export default class SizeExceeded extends Error {
     this.StatusCode = 500;
   }
 }
+
+export default SizeExceeded;

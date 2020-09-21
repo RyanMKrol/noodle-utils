@@ -1,4 +1,6 @@
-export default class DataNotFound extends Error {
+/** @memberof errors */
+
+class DataNotFound extends Error {
   constructor(...params) {
     // Pass remaining arguments (including vendor specific ones) to parent constructor
     super(...params);
@@ -12,3 +14,5 @@ export default class DataNotFound extends Error {
     this.StatusCode = 404;
   }
 }
+
+export default DataNotFound;

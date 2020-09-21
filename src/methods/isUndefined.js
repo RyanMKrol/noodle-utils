@@ -1,3 +1,5 @@
+/** @memberof methods */
+
 /**
  * Helper method to determine if a value is undefined or not
  *

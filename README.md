@@ -47,6 +47,51 @@ Constructor for DynamoWriteQueue
 
 
 
+### src/classes/DynamoReadQueue.js
+
+
+#### new DynamoReadQueue() 
+
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
+
+Constructor for DynamoWriteQueue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+
 ### src/classes/DynamoWriteQueue.js
 
 
@@ -138,21 +183,14 @@ Method to push items to our queue
 
 
 
-### src/methods/pipeline.js
+### src/errors/DataNotFound.js
 
 
-#### pipeline(fns) 
-
-Method to handle sequential tasks that rely on the output of the previous task
+#### new DataNotFound() 
 
 
 
 
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| fns | `Array.<Function>`  | The functions you would like to run over the input | &nbsp; |
 
 
 
@@ -160,23 +198,19 @@ Method to handle sequential tasks that rely on the output of the previous task
 ##### Returns
 
 
-- `any`  The result of the pipeline processing
-
-
-
-#### pipelineClosureMethod(func, args) 
-
-This method allows you to pass more arguments through the pipeline via a closure
+- `Void`
 
 
 
 
-##### Parameters
+### src/errors/SizeExceeded.js
 
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| func | `Function`  | The method you want to run in the pipeline | &nbsp; |
-| args | `any`  | The closure args you want to use in the method | &nbsp; |
+
+#### new SizeExceeded() 
+
+
+
+
 
 
 
@@ -184,7 +218,7 @@ This method allows you to pass more arguments through the pipeline via a closure
 ##### Returns
 
 
-- `Function`  A method to be called with a new argumnet as well  as those captured in the closure
+- `Void`
 
 
 
@@ -239,6 +273,57 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 
 -  Nothing
+
+
+
+
+### src/methods/pipeline.js
+
+
+#### pipeline(fns) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| fns | `Array.<Function>`  | The functions you would like to run over the input | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `any`  The result of the pipeline processing
+
+
+
+#### pipelineClosureMethod(func, args) 
+
+This method allows you to pass more arguments through the pipeline via a closure
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| func | `Function`  | The method you want to run in the pipeline | &nbsp; |
+| args | `any`  | The closure args you want to use in the method | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Function`  A method to be called with a new argumnet as well  as those captured in the closure
 
 
 

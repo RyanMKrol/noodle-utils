@@ -1,3 +1,5 @@
+/** @memberof classes */
+
 import async from 'async';
 import DynamoDBWrapper from 'noodle-dynamo';
 
