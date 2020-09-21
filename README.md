@@ -295,49 +295,6 @@ Constructor for error
 
 
 
-### src/errors/SizeExceeded.js
-
-
-#### new SizeExceeded() 
-
-Used when the size of a write item to dynamo is too big
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### SizeExceeded.constructor(params) 
-
-Constructor of error
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| params | `any`  | Any params to be passed to the Error parent | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-
 ### src/errors/InvalidQueueReadItem.js
 
 
@@ -381,12 +338,28 @@ Constructor for error
 
 
 
-### src/methods/isUndefined.js
+### src/errors/SizeExceeded.js
 
 
-#### isUndefined(value) 
+#### new SizeExceeded() 
 
-Helper method to determine if a value is undefined or not
+Used when the size of a write item to dynamo is too big
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### SizeExceeded.constructor(params) 
+
+Constructor of error
 
 
 
@@ -395,7 +368,7 @@ Helper method to determine if a value is undefined or not
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| value | `any`  | The value to check | &nbsp; |
+| params | `any`  | Any params to be passed to the Error parent | &nbsp; |
 
 
 
@@ -403,7 +376,34 @@ Helper method to determine if a value is undefined or not
 ##### Returns
 
 
-- `boolean`  Whether the value is undefined or not
+- `Void`
+
+
+
+
+### src/methods/sleep.js
+
+
+#### sleep(time) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| time | `number`  | The time, in ms, to sleep for | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
 
 
 
@@ -459,12 +459,12 @@ This method allows you to pass more arguments through the pipeline via a closure
 
 
 
-### src/methods/sleep.js
+### src/methods/isUndefined.js
 
 
-#### sleep(time) 
+#### isUndefined(value) 
 
-Method to handle sequential tasks that rely on the output of the previous task
+Helper method to determine if a value is undefined or not
 
 
 
@@ -473,7 +473,7 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| time | `number`  | The time, in ms, to sleep for | &nbsp; |
+| value | `any`  | The value to check | &nbsp; |
 
 
 
@@ -481,7 +481,7 @@ Method to handle sequential tasks that rely on the output of the previous task
 ##### Returns
 
 
--  Nothing
+- `boolean`  Whether the value is undefined or not
 
 
 

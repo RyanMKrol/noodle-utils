@@ -6,13 +6,7 @@ import DynamoDBWrapper from 'noodle-dynamo';
 import { DataNotFound } from '../errors';
 import { sleep } from '../methods';
 
-// I only want my Dynamo table using 5 Write capacity units
-// A WCU can be thought of as a 1K write
-const PROVISIONED_READ_CAPACITY_UNITS = 5;
-
-// Making this slightly over a second to give myself some
-// buffer to not be right at the line of 5 WCU
-const SINGLE_READ_CAPACITY_UNIT_TIME_MS = 1200;
+import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '../constants';
 
 /**
  * @typedef DynamoReadItem
@@ -55,7 +49,7 @@ export default class DynamoReadBatch {
    */
   async readItems(readItems) {
     const data = {};
-    await async.mapLimit(readItems, PROVISIONED_READ_CAPACITY_UNITS, async (readItem) => {
+    await async.mapLimit(readItems, PROVISIONED_CAPACITY_UNITS, async (readItem) => {
       const { expression } = readItem;
       const { expressionData } = readItem;
       const { key } = readItem;
@@ -78,7 +72,7 @@ export default class DynamoReadBatch {
         data[key] = e;
       }
 
-      await sleep(SINGLE_READ_CAPACITY_UNIT_TIME_MS);
+      await sleep(SINGLE_CAPACITY_UNIT_USED_TIME_MS);
     });
 
     return data;

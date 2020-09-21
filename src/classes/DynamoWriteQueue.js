@@ -5,16 +5,11 @@ import DynamoDBWrapper from 'noodle-dynamo';
 
 import { SizeExceeded } from '../errors';
 
-// I only want my Dynamo table using 5 Write capacity units
-// A WCU can be thought of as a 1K write
-const PROVISIONED_WRITE_CAPACITY_UNITS = 5;
-
-// Making this slightly over a second to give myself some
-// buffer to not be right at the line of 5 WCU
-const SINGLE_WRITE_CAPACITY_UNIT_TIME_MS = 1200;
-
-// used to enforce the definition of a WCU, < 1kb per second
-const MAX_WRITE_DATA_SIZE_BYTES = 1000;
+import {
+  PROVISIONED_CAPACITY_UNITS,
+  SINGLE_CAPACITY_UNIT_USED_TIME_MS,
+  MAX_WRITE_DATA_SIZE_BYTES,
+} from '../constants';
 
 /**
  * @typedef DynamoCredentials
@@ -44,7 +39,7 @@ export default class DynamoWriteQueue {
     // setup the event queue
     setInterval(async () => {
       await this.persistBatch();
-    }, SINGLE_WRITE_CAPACITY_UNIT_TIME_MS);
+    }, SINGLE_CAPACITY_UNIT_USED_TIME_MS);
   }
 
   /**
@@ -83,7 +78,7 @@ export default class DynamoWriteQueue {
    */
   async persistBatch() {
     if (this.queue.length > 0) {
-      const batch = this.queue.splice(0, PROVISIONED_WRITE_CAPACITY_UNITS);
+      const batch = this.queue.splice(0, PROVISIONED_CAPACITY_UNITS);
 
       batch.forEach(async (item) => {
         this.dynamoClient.writeTable(this.tableName, item);
