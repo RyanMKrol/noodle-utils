@@ -47,97 +47,6 @@ Constructor for DynamoWriteQueue
 
 
 
-### src/classes/DynamoWriteQueue.js
-
-
-#### new DynamoWriteQueue() 
-
-Creates a new Queue for pushing data to Dynamo.
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoWriteQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
-
-Constructor for DynamoWriteQueue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
-| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
-| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoWriteQueue.push(item) 
-
-Method to push items to our queue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| item | `object`  | Any item that we want to push to Dynamo | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-#### DynamoWriteQueue.pushBatch(batch) 
-
-Method to push items to our queue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| batch | `Array.<object>`  | A batch of items to push into the queue | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-
 ### src/classes/DynamoReadQueue.js
 
 
@@ -252,6 +161,97 @@ Validates that an item pushed to the queue is valid
 
 
 
+### src/classes/DynamoWriteQueue.js
+
+
+#### new DynamoWriteQueue() 
+
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoWriteQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
+
+Constructor for DynamoWriteQueue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoWriteQueue.push(item) 
+
+Method to push items to our queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| item | `object`  | Any item that we want to push to Dynamo | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
+
+
+
+#### DynamoWriteQueue.pushBatch(batch) 
+
+Method to push items to our queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| batch | `Array.<object>`  | A batch of items to push into the queue | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
+
+
+
+
 ### src/errors/DataNotFound.js
 
 
@@ -338,6 +338,49 @@ Constructor for error
 
 
 
+### src/errors/SizeExceeded.js
+
+
+#### new SizeExceeded() 
+
+Used when the size of a write item to dynamo is too big
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### SizeExceeded.constructor(params) 
+
+Constructor of error
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| params | `any`  | Any params to be passed to the Error parent | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+
 ### src/methods/pipeline.js
 
 
@@ -389,76 +432,6 @@ This method allows you to pass more arguments through the pipeline via a closure
 
 
 
-### src/methods/sleep.js
-
-
-#### sleep(time) 
-
-Method to handle sequential tasks that rely on the output of the previous task
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| time | `number`  | The time, in ms, to sleep for | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-
-### src/errors/SizeExceeded.js
-
-
-#### new SizeExceeded() 
-
-Used when the size of a write item to dynamo is too big
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### SizeExceeded.constructor(params) 
-
-Constructor of error
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| params | `any`  | Any params to be passed to the Error parent | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-
 ### src/methods/isUndefined.js
 
 
@@ -482,6 +455,33 @@ Helper method to determine if a value is undefined or not
 
 
 - `boolean`  Whether the value is undefined or not
+
+
+
+
+### src/methods/sleep.js
+
+
+#### sleep(time) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| time | `number`  | The time, in ms, to sleep for | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
 
 
 
