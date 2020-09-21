@@ -2,6 +2,51 @@
 
 
 
+### src/classes/DynamoReadBatch.js
+
+
+#### new DynamoReadBatch() 
+
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadBatch.constructor(dynamoCredentials, dynamoRegion, tableName) 
+
+Constructor for DynamoWriteQueue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+
 ### src/classes/DynamoWriteQueue.js
 
 
@@ -93,28 +138,12 @@ Method to push items to our queue
 
 
 
-### src/classes/DynamoReadBatch.js
+### src/methods/isUndefined.js
 
 
-#### new DynamoReadBatch() 
+#### isUndefined(value) 
 
-Creates a new Queue for pushing data to Dynamo.
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoReadBatch.constructor(dynamoCredentials, dynamoRegion, tableName) 
-
-Constructor for DynamoWriteQueue
+Helper method to determine if a value is undefined or not
 
 
 
@@ -123,9 +152,7 @@ Constructor for DynamoWriteQueue
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
-| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
-| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+| value | `any`  | The value to check | &nbsp; |
 
 
 
@@ -133,7 +160,7 @@ Constructor for DynamoWriteQueue
 ##### Returns
 
 
-- `Void`
+- `boolean`  Whether the value is undefined or not
 
 
 
