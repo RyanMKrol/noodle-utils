@@ -1,4 +1,4 @@
-# noodle-utils *2.0.2*
+# noodle-utils *2.1.0*
 
 
 
@@ -138,6 +138,57 @@ Method to push items to our queue
 
 
 
+### src/methods/pipeline.js
+
+
+#### pipeline(fns) 
+
+Method to handle sequential tasks that rely on the output of the previous task
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| fns | `Array.<Function>`  | The functions you would like to run over the input | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `any`  The result of the pipeline processing
+
+
+
+#### pipelineClosureMethod(func, args) 
+
+This method allows you to pass more arguments through the pipeline via a closure
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| func | `Function`  | The method you want to run in the pipeline | &nbsp; |
+| args | `any`  | The closure args you want to use in the method | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Function`  A method to be called with a new argumnet as well  as those captured in the closure
+
+
+
+
 ### src/methods/isUndefined.js
 
 
@@ -188,57 +239,6 @@ Method to handle sequential tasks that rely on the output of the previous task
 
 
 -  Nothing
-
-
-
-
-### src/methods/pipeline.js
-
-
-#### pipeline(fns) 
-
-Method to handle sequential tasks that rely on the output of the previous task
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| fns | `Array.<Function>`  | The functions you would like to run over the input | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `any`  The result of the pipeline processing
-
-
-
-#### pipelineClosureMethod(func, args) 
-
-This method allows you to pass more arguments through the pipeline via a closure
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| func | `Function`  | The method you want to run in the pipeline | &nbsp; |
-| args | `any`  | The closure args you want to use in the method | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Function`  A method to be called with a new argumnet as well  as those captured in the closure
 
 
 
