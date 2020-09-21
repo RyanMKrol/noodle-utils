@@ -295,6 +295,49 @@ Constructor for error
 
 
 
+### src/errors/SizeExceeded.js
+
+
+#### new SizeExceeded() 
+
+Used when the size of a write item to dynamo is too big
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### SizeExceeded.constructor(params) 
+
+Constructor of error
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| params | `any`  | Any params to be passed to the Error parent | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+
 ### src/errors/InvalidQueueReadItem.js
 
 
@@ -338,28 +381,12 @@ Constructor for error
 
 
 
-### src/errors/SizeExceeded.js
+### src/methods/isUndefined.js
 
 
-#### new SizeExceeded() 
+#### isUndefined(value) 
 
-Used when the size of a write item to dynamo is too big
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### SizeExceeded.constructor(params) 
-
-Constructor of error
+Helper method to determine if a value is undefined or not
 
 
 
@@ -368,7 +395,7 @@ Constructor of error
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| params | `any`  | Any params to be passed to the Error parent | &nbsp; |
+| value | `any`  | The value to check | &nbsp; |
 
 
 
@@ -376,7 +403,7 @@ Constructor of error
 ##### Returns
 
 
-- `Void`
+- `boolean`  Whether the value is undefined or not
 
 
 
@@ -428,33 +455,6 @@ This method allows you to pass more arguments through the pipeline via a closure
 
 
 - `Function`  A method to be called with a new argumnet as well  as those captured in the closure
-
-
-
-
-### src/methods/isUndefined.js
-
-
-#### isUndefined(value) 
-
-Helper method to determine if a value is undefined or not
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| value | `any`  | The value to check | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `boolean`  Whether the value is undefined or not
 
 
 
