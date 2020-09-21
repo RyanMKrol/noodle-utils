@@ -1,8 +1,14 @@
 import {
   pipeline, pipelineClosureMethod, sleep, isUndefined,
 } from './methods';
-import { DynamoReadBatch, DynamoWriteQueue } from './classes';
+import { DynamoReadBatch, DynamoWriteQueue, DynamoReadQueue } from './classes';
 
 export {
-  pipeline, pipelineClosureMethod, sleep, isUndefined, DynamoReadBatch, DynamoWriteQueue,
+  pipeline,
+  pipelineClosureMethod,
+  sleep,
+  isUndefined,
+  DynamoReadBatch,
+  DynamoWriteQueue,
+  DynamoReadQueue,
 };
