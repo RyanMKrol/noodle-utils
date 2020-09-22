@@ -9,7 +9,7 @@ import { sleep } from '../../methods';
 import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '../../constants';
 
 /**
- * @typedef DynamoReadItem
+ * @typedef ReadBatchItem
  * @type {object}
  * @property {string} expression The expression to read the table with
  * @property {string} expressionData The data to provide to the read expression
@@ -23,7 +23,7 @@ import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '.
  */
 export default class DynamoReadBatch {
   /**
-   * Constructor for DynamoWriteQueue
+   * Constructor for DynamoReadBatch
    *
    * @param {module:dynamo.DynamoCredentials} dynamoCredentials The credentials for a Dynamo table
    * @param {string} dynamoRegion The region of the Dynamo table we're using
@@ -37,7 +37,7 @@ export default class DynamoReadBatch {
   /**
    * Method to read items from Dynamo
    *
-   * @param {Array.<DynamoReadItem>} readItems Items to read from the Dynamo table
+   * @param {Array.<ReadBatchItem>} readItems Items to read from the Dynamo table
    * @returns {object.<any>} An object containing the read data
    */
   async readItems(readItems) {
@@ -54,11 +54,11 @@ export default class DynamoReadBatch {
           expressionData,
         );
 
-        if (readData.Count !== 1) {
+        if (readData.Count === 0) {
           throw new DataNotFound();
         }
 
-        const dataItem = readData.Items[0];
+        const dataItem = readData.Items;
 
         data[key] = dataItem;
       } catch (e) {

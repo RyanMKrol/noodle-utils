@@ -2,12 +2,12 @@
 
 
 
-### src/errors/InvalidQueueReadItem.js
+### src/errors/DataNotFound.js
 
 
-#### new InvalidQueueReadItem() 
+#### new DataNotFound() 
 
-Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
+Used when an item isn't found in Dynamo on read
 
 
 
@@ -21,7 +21,7 @@ Used when an item is passed to the DynamoReadQueue that doesn't contain the corr
 
 
 
-#### InvalidQueueReadItem.constructor(params) 
+#### DataNotFound.constructor(params) 
 
 Constructor for error
 
@@ -45,12 +45,12 @@ Constructor for error
 
 
 
-### src/errors/DataNotFound.js
+### src/errors/InvalidQueueReadItem.js
 
 
-#### new DataNotFound() 
+#### new InvalidQueueReadItem() 
 
-Used when an item isn't found in Dynamo on read
+Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
 
 
 
@@ -64,7 +64,7 @@ Used when an item isn't found in Dynamo on read
 
 
 
-#### DataNotFound.constructor(params) 
+#### InvalidQueueReadItem.constructor(params) 
 
 Constructor for error
 
@@ -257,7 +257,7 @@ Creates a new Queue for pushing data to Dynamo.
 
 #### DynamoReadBatch.constructor(dynamoCredentials, dynamoRegion, tableName) 
 
-Constructor for DynamoWriteQueue
+Constructor for DynamoReadBatch
 
 
 
@@ -269,120 +269,6 @@ Constructor for DynamoWriteQueue
 | dynamoCredentials | `module:dynamo.DynamoCredentials`  | The credentials for a Dynamo table | &nbsp; |
 | dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
 | tableName | `string`  | The name of the table we want to store data in | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-
-### src/classes/dynamo/DynamoReadQueue.js
-
-
-#### new DynamoReadQueue() 
-
-Creates a new Queue for pushing data to Dynamo.
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoReadQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
-
-Constructor for DynamoWriteQueue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| dynamoCredentials | `module:dynamo.DynamoCredentials`  | The credentials for a Dynamo table | &nbsp; |
-| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
-| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoReadQueue.push(item) 
-
-Pushes item to be read into the queue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| item | `ReadQueueItem`  | An item to be read from Dynamo | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoReadQueue.pushBatch(batch) 
-
-Method to push items to our queue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| batch | `Array.<ReadQueueItem>`  | A batch of items to push into the queue | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-#### validateItem(item) 
-
-Validates that an item pushed to the queue is valid
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| item | `ReadQueueItem`  | Specifies what to read from the database | &nbsp; |
 
 
 
@@ -439,7 +325,7 @@ Constructor for DynamoWriteQueue
 
 
 
-#### DynamoWriteQueue.push(item) 
+#### DynamoWriteQueue.push(item, callback) 
 
 Method to push items to our queue
 
@@ -451,6 +337,7 @@ Method to push items to our queue
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
 | item | `object`  | Any item that we want to push to Dynamo | &nbsp; |
+| callback | `Function`  | A method to call once the item has been stored | &nbsp; |
 
 
 
@@ -462,7 +349,7 @@ Method to push items to our queue
 
 
 
-#### DynamoWriteQueue.pushBatch(batch) 
+#### DynamoWriteQueue.pushBatch(batch, callback) 
 
 Method to push items to our queue
 
@@ -474,6 +361,7 @@ Method to push items to our queue
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
 | batch | `Array.<object>`  | A batch of items to push into the queue | &nbsp; |
+| callback | `Function`  | A method to call once the item has been stored | &nbsp; |
 
 
 
@@ -482,6 +370,145 @@ Method to push items to our queue
 
 
 -  Nothing
+
+
+
+
+### src/classes/dynamo/DynamoReadQueue.js
+
+
+#### new DynamoReadQueue() 
+
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
+
+Constructor for DynamoReadQueue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| dynamoCredentials | `module:dynamo.DynamoCredentials`  | The credentials for a Dynamo table | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadQueue.push(item, callback) 
+
+Pushes item to be read into the queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| item | `ReadItem`  | An item to be read from Dynamo | &nbsp; |
+| callback | `Function`  | The method to be called once the item has been read | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadQueue.pushBatch(batch, callback) 
+
+Method to push items to our queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| batch | `Array.<ReadItem>`  | A batch of items to push into the queue | &nbsp; |
+| callback | `Function`  | A method to be called for each read item | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
+
+
+
+#### validateItem(item) 
+
+Validates that an item pushed to the queue is valid
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| item | `ReadItem`  | Specifies what to read from the database | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### validateCallback(callback) 
+
+Validates that the callback fulfils the requirements for a read
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| callback | `Function`  | The method to validate | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
 
 
 
