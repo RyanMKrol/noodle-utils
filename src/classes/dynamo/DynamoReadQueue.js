@@ -8,10 +8,16 @@ import { DataNotFound, InvalidQueueReadItem } from '../../errors';
 import { isUndefined } from '../../methods';
 
 /**
- * @typedef ReadQueueItem
+ * @typedef ReadItem
  * @type {object}
  * @property {string} expression The expression to read the database with
  * @property {object} expressionData The data to provide to the above expression
+ */
+
+/**
+ * @typedef ReadQueueItem
+ * @type {object}
+ * @property {ReadItem} readItem The item to be read from the database
  * @property {Function} callback The callback to call once the data has been read
  */
 
@@ -22,7 +28,7 @@ import { isUndefined } from '../../methods';
  */
 class DynamoReadQueue {
   /**
-   * Constructor for DynamoWriteQueue
+   * Constructor for DynamoReadQueue
    *
    * @param {module:dynamo.DynamoCredentials} dynamoCredentials The credentials for a Dynamo table
    * @param {string} dynamoRegion The region of the Dynamo table we're using
@@ -42,27 +48,37 @@ class DynamoReadQueue {
   /**
    * Pushes item to be read into the queue
    *
-   * @param {ReadQueueItem} item An item to be read from Dynamo
+   * @param {ReadItem} item An item to be read from Dynamo
+   * @param {Function} callback The method to be called once the item has been read
    */
-  push(item) {
+  push(item, callback) {
     validateItem(item);
-    this.queue.push(item);
+    validateCallback(callback);
+
+    this.queue.push({ item, callback });
   }
 
   /**
    * Method to push items to our queue
    *
-   * @param {Array.<ReadQueueItem>} batch A batch of items to push into the queue
+   * @param {Array.<ReadItem>} batch A batch of items to push into the queue
+   * @param {Function} callback A method to be called for each read item
    * @returns {void} Nothing
    */
-  pushBatch(batch) {
+  pushBatch(batch, callback) {
+    validateCallback(callback);
     batch.forEach((item) => validateItem(item));
-    this.queue = this.queue.concat(batch);
+
+    const queueItems = batch.map((item) => ({
+      item,
+      callback,
+    }));
+
+    this.queue = this.queue.concat(queueItems);
   }
 
   /**
-   * Method to push items to dynamo. This will take a chunk of the current
-   * queue, and execute writes to Dynamo for each
+   * Method to read a batch of items from dynamo
    *
    * @returns {void} Nothing
    */
@@ -70,23 +86,23 @@ class DynamoReadQueue {
     if (this.queue.length > 0) {
       const batch = this.queue.splice(0, PROVISIONED_CAPACITY_UNITS);
 
-      batch.forEach(async (item) => {
+      batch.forEach(async (queueItem) => {
         try {
           const readData = await this.dynamoClient.readTable(
             this.tableName,
-            item.expression,
-            item.expressionData,
+            queueItem.item.expression,
+            queueItem.item.expressionData,
           );
 
-          if (readData.Count !== 1) {
+          if (readData.Count === 0) {
             throw new DataNotFound();
           }
 
-          const dataItem = readData.Items[0];
+          const dataItem = readData.Items;
 
-          item.callback(dataItem);
+          queueItem.callback(dataItem);
         } catch (e) {
-          item.callback(e);
+          queueItem.callback(e);
         }
       });
     }
@@ -96,17 +112,25 @@ class DynamoReadQueue {
 /**
  * Validates that an item pushed to the queue is valid
  *
- * @param {ReadQueueItem} item Specifies what to read from the database
+ * @param {ReadItem} item Specifies what to read from the database
  */
 function validateItem(item) {
   if (isUndefined(item.expression)) {
-    throw new InvalidQueueReadItem('Missing expression');
+    throw new InvalidQueueReadItem('Missing expression!');
   }
   if (isUndefined(item.expressionData)) {
-    throw new InvalidQueueReadItem('Missing expressionData');
+    throw new InvalidQueueReadItem('Missing expressionData!');
   }
-  if (isUndefined(item.callback)) {
-    throw new InvalidQueueReadItem('Missing callback');
+}
+
+/**
+ * Validates that the callback fulfils the requirements for a read
+ *
+ * @param {Function} callback The method to validate
+ */
+function validateCallback(callback) {
+  if (isUndefined(callback)) {
+    throw new InvalidQueueReadItem('Missing callback!');
   }
 }
 

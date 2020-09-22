@@ -12,6 +12,13 @@ import {
 } from '../../constants';
 
 /**
+ * @typedef WriteQueueItem
+ * @type {object}
+ * @property {object} item The item to store in the database
+ * @property {Function} callback The callback to call once the data has been read
+ */
+
+/**
  * Creates a new Queue for pushing data to Dynamo.
  *
  * @class
@@ -39,11 +46,12 @@ export default class DynamoWriteQueue {
    * Method to push items to our queue
    *
    * @param {object} item Any item that we want to push to Dynamo
+   * @param {?Function} callback A method to call once the item has been stored
    * @returns {void} Nothing
    */
-  push(item) {
+  push(item, callback) {
     if (sizeof.sizeof(item) < MAX_WRITE_DATA_SIZE_BYTES) {
-      this.queue.push(item);
+      this.queue.push({ item, callback });
     } else {
       throw new SizeExceeded();
     }
@@ -53,14 +61,20 @@ export default class DynamoWriteQueue {
    * Method to push items to our queue
    *
    * @param {Array.<object>} batch A batch of items to push into the queue
+   * @param {?Function} callback A method to call once the item has been stored
    * @returns {void} Nothing
    */
-  pushBatch(batch) {
+  pushBatch(batch, callback) {
     if (batch.some((x) => sizeof.sizeof(x) > MAX_WRITE_DATA_SIZE_BYTES)) {
       throw new SizeExceeded();
     }
 
-    this.queue = this.queue.concat(batch);
+    const batchWithCallbacks = batch.map((item) => ({
+      item,
+      callback,
+    }));
+
+    this.queue = this.queue.concat(batchWithCallbacks);
   }
 
   /**
@@ -73,8 +87,12 @@ export default class DynamoWriteQueue {
     if (this.queue.length > 0) {
       const batch = this.queue.splice(0, PROVISIONED_CAPACITY_UNITS);
 
-      batch.forEach(async (item) => {
-        this.dynamoClient.writeTable(this.tableName, item);
+      batch.forEach(async (queueItem) => {
+        this.dynamoClient.writeTable(this.tableName, queueItem.item).then((result) => {
+          if (queueItem.callback) {
+            queueItem.callback(result);
+          }
+        });
       });
     }
   }
