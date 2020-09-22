@@ -1,21 +1,14 @@
-/** @memberof classes */
+/** @memberof dynamo */
 
 import DynamoDBWrapper from 'noodle-dynamo';
 
-import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '../constants';
+import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '../../constants';
 
-import { DataNotFound, InvalidQueueReadItem } from '../errors';
-import { isUndefined } from '../methods';
-
-/**
- * @typedef DynamoCredentials
- * @type {object}
- * @property {string} accessKeyId The access ID for your dynamo table
- * @property {string} secretAccessKey The access key for your dynamo table
- */
+import { DataNotFound, InvalidQueueReadItem } from '../../errors';
+import { isUndefined } from '../../methods';
 
 /**
- * @typedef QueueItem
+ * @typedef ReadQueueItem
  * @type {object}
  * @property {string} expression The expression to read the database with
  * @property {object} expressionData The data to provide to the above expression
@@ -31,7 +24,7 @@ class DynamoReadQueue {
   /**
    * Constructor for DynamoWriteQueue
    *
-   * @param {DynamoCredentials} dynamoCredentials The credentials for your Dynamo table
+   * @param {module:dynamo.DynamoCredentials} dynamoCredentials The credentials for a Dynamo table
    * @param {string} dynamoRegion The region of the Dynamo table we're using
    * @param {string} tableName The name of the table we want to store data in
    */
@@ -49,7 +42,7 @@ class DynamoReadQueue {
   /**
    * Pushes item to be read into the queue
    *
-   * @param {QueueItem} item An item to be read from Dynamo
+   * @param {ReadQueueItem} item An item to be read from Dynamo
    */
   push(item) {
     validateItem(item);
@@ -59,7 +52,7 @@ class DynamoReadQueue {
   /**
    * Method to push items to our queue
    *
-   * @param {Array.<QueueItem>} batch A batch of items to push into the queue
+   * @param {Array.<ReadQueueItem>} batch A batch of items to push into the queue
    * @returns {void} Nothing
    */
   pushBatch(batch) {
@@ -103,7 +96,7 @@ class DynamoReadQueue {
 /**
  * Validates that an item pushed to the queue is valid
  *
- * @param {QueueItem} item Specifies what to read from the database
+ * @param {ReadQueueItem} item Specifies what to read from the database
  */
 function validateItem(item) {
   if (isUndefined(item.expression)) {

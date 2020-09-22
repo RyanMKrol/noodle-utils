@@ -2,12 +2,12 @@
 
 
 
-### src/errors/DataNotFound.js
+### src/errors/InvalidQueueReadItem.js
 
 
-#### new DataNotFound() 
+#### new InvalidQueueReadItem() 
 
-Used when an item isn't found in Dynamo on read
+Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
 
 
 
@@ -21,7 +21,7 @@ Used when an item isn't found in Dynamo on read
 
 
 
-#### DataNotFound.constructor(params) 
+#### InvalidQueueReadItem.constructor(params) 
 
 Constructor for error
 
@@ -45,12 +45,12 @@ Constructor for error
 
 
 
-### src/errors/InvalidQueueReadItem.js
+### src/errors/DataNotFound.js
 
 
-#### new InvalidQueueReadItem() 
+#### new DataNotFound() 
 
-Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
+Used when an item isn't found in Dynamo on read
 
 
 
@@ -64,7 +64,7 @@ Used when an item is passed to the DynamoReadQueue that doesn't contain the corr
 
 
 
-#### InvalidQueueReadItem.constructor(params) 
+#### DataNotFound.constructor(params) 
 
 Constructor for error
 
@@ -119,256 +119,6 @@ Constructor of error
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
 | params | `any`  | Any params to be passed to the Error parent | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-
-### src/classes/DynamoReadBatch.js
-
-
-#### new DynamoReadBatch() 
-
-Creates a new Queue for pushing data to Dynamo.
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoReadBatch.constructor(dynamoCredentials, dynamoRegion, tableName) 
-
-Constructor for DynamoWriteQueue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
-| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
-| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-
-### src/classes/DynamoWriteQueue.js
-
-
-#### new DynamoWriteQueue() 
-
-Creates a new Queue for pushing data to Dynamo.
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoWriteQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
-
-Constructor for DynamoWriteQueue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
-| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
-| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoWriteQueue.push(item) 
-
-Method to push items to our queue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| item | `object`  | Any item that we want to push to Dynamo | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-#### DynamoWriteQueue.pushBatch(batch) 
-
-Method to push items to our queue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| batch | `Array.<object>`  | A batch of items to push into the queue | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-
-### src/classes/DynamoReadQueue.js
-
-
-#### new DynamoReadQueue() 
-
-Creates a new Queue for pushing data to Dynamo.
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoReadQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
-
-Constructor for DynamoWriteQueue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| dynamoCredentials | `DynamoCredentials`  | The credentials for your Dynamo table | &nbsp; |
-| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
-| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoReadQueue.push(item) 
-
-Pushes item to be read into the queue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| item | `QueueItem`  | An item to be read from Dynamo | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### DynamoReadQueue.pushBatch(batch) 
-
-Method to push items to our queue
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| batch | `Array.<QueueItem>`  | A batch of items to push into the queue | &nbsp; |
-
-
-
-
-##### Returns
-
-
--  Nothing
-
-
-
-#### validateItem(item) 
-
-Validates that an item pushed to the queue is valid
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| item | `QueueItem`  | Specifies what to read from the database | &nbsp; |
 
 
 
@@ -474,6 +224,256 @@ Method to handle sequential tasks that rely on the output of the previous task
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
 | time | `number`  | The time, in ms, to sleep for | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
+
+
+
+
+### src/classes/dynamo/DynamoReadBatch.js
+
+
+#### new DynamoReadBatch() 
+
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadBatch.constructor(dynamoCredentials, dynamoRegion, tableName) 
+
+Constructor for DynamoWriteQueue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| dynamoCredentials | `module:dynamo.DynamoCredentials`  | The credentials for a Dynamo table | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+
+### src/classes/dynamo/DynamoReadQueue.js
+
+
+#### new DynamoReadQueue() 
+
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
+
+Constructor for DynamoWriteQueue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| dynamoCredentials | `module:dynamo.DynamoCredentials`  | The credentials for a Dynamo table | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadQueue.push(item) 
+
+Pushes item to be read into the queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| item | `ReadQueueItem`  | An item to be read from Dynamo | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoReadQueue.pushBatch(batch) 
+
+Method to push items to our queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| batch | `Array.<ReadQueueItem>`  | A batch of items to push into the queue | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
+
+
+
+#### validateItem(item) 
+
+Validates that an item pushed to the queue is valid
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| item | `ReadQueueItem`  | Specifies what to read from the database | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+
+### src/classes/dynamo/DynamoWriteQueue.js
+
+
+#### new DynamoWriteQueue() 
+
+Creates a new Queue for pushing data to Dynamo.
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoWriteQueue.constructor(dynamoCredentials, dynamoRegion, tableName) 
+
+Constructor for DynamoWriteQueue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| dynamoCredentials | `module:dynamo.DynamoCredentials`  | The credentials for a Dynamo table | &nbsp; |
+| dynamoRegion | `string`  | The region of the Dynamo table we're using | &nbsp; |
+| tableName | `string`  | The name of the table we want to store data in | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### DynamoWriteQueue.push(item) 
+
+Method to push items to our queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| item | `object`  | Any item that we want to push to Dynamo | &nbsp; |
+
+
+
+
+##### Returns
+
+
+-  Nothing
+
+
+
+#### DynamoWriteQueue.pushBatch(batch) 
+
+Method to push items to our queue
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| batch | `Array.<object>`  | A batch of items to push into the queue | &nbsp; |
 
 
 

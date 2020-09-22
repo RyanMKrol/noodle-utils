@@ -1,12 +1,12 @@
-/** @memberof classes */
+/** @memberof dynamo */
 
 import async from 'async';
 import DynamoDBWrapper from 'noodle-dynamo';
 
-import { DataNotFound } from '../errors';
-import { sleep } from '../methods';
+import { DataNotFound } from '../../errors';
+import { sleep } from '../../methods';
 
-import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '../constants';
+import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '../../constants';
 
 /**
  * @typedef DynamoReadItem
@@ -14,13 +14,6 @@ import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '.
  * @property {string} expression The expression to read the table with
  * @property {string} expressionData The data to provide to the read expression
  * @property {string} key The key to use in the returned object to store the data against
- */
-
-/**
- * @typedef DynamoCredentials
- * @type {object}
- * @property {string} accessKeyId The access ID for your dynamo table
- * @property {string} secretAccessKey The access key for your dynamo table
  */
 
 /**
@@ -32,7 +25,7 @@ export default class DynamoReadBatch {
   /**
    * Constructor for DynamoWriteQueue
    *
-   * @param {DynamoCredentials} dynamoCredentials The credentials for your Dynamo table
+   * @param {module:dynamo.DynamoCredentials} dynamoCredentials The credentials for a Dynamo table
    * @param {string} dynamoRegion The region of the Dynamo table we're using
    * @param {string} tableName The name of the table we want to store data in
    */
