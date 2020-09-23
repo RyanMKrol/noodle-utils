@@ -23,7 +23,50 @@ Used when an item isn't found in Dynamo on read
 
 #### DataNotFound.constructor(params) 
 
-Constructor for error
+Constructor of error
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| params | `any`  | Any params that need to be passed to parent | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+
+### src/errors/InvalidQueueReadItem.js
+
+
+#### new InvalidQueueReadItem() 
+
+Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### InvalidQueueReadItem.constructor(params) 
+
+Constructor of error
 
 
 
@@ -88,28 +131,12 @@ Constructor of error
 
 
 
-### src/errors/InvalidQueueReadItem.js
+### src/methods/isUndefined.js
 
 
-#### new InvalidQueueReadItem() 
+#### isUndefined(value) 
 
-Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### InvalidQueueReadItem.constructor(params) 
-
-Constructor for error
+Helper method to determine if a value is undefined or not
 
 
 
@@ -118,7 +145,7 @@ Constructor for error
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| params | `any`  | Any params that need to be passed to parent | &nbsp; |
+| value | `any`  | The value to check | &nbsp; |
 
 
 
@@ -126,7 +153,7 @@ Constructor for error
 ##### Returns
 
 
-- `Void`
+- `boolean`  Whether the value is undefined or not
 
 
 
@@ -346,7 +373,7 @@ Method to push items to our queue
 
 
 
-#### validateItem(item) 
+#### validateItem(item)  *private method*
 
 Validates that an item pushed to the queue is valid
 
@@ -369,7 +396,7 @@ Validates that an item pushed to the queue is valid
 
 
 
-#### validateCallback(callback) 
+#### validateCallback(callback)  *private method*
 
 Validates that the callback fulfils the requirements for a read
 
@@ -482,33 +509,6 @@ Method to push items to our queue
 
 
 -  Nothing
-
-
-
-
-### src/methods/isUndefined.js
-
-
-#### isUndefined(value) 
-
-Helper method to determine if a value is undefined or not
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| value | `any`  | The value to check | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `boolean`  Whether the value is undefined or not
 
 
 

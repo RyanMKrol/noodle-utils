@@ -1,0 +1,22 @@
+{
+  "tags": {
+    "allowUnknownTags": false,
+    "dictionaries": ["jsdoc", "closure"]
+  },
+  "source": {
+    "include": ["src"],
+    "includePattern": ".js$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "sourceType": "module",
+  "plugins": ["plugins/markdown"],
+  "templates": {
+    "referenceTitle": "Noodle-Utils",
+    "cleverLinks": true,
+    "monospaceLinks": true
+  },
+  "opts": {
+    "destination": "docs",
+    "recurse": true
+  }
+}

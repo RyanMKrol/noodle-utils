@@ -31,6 +31,8 @@
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
     "@babel/preset-env": "^7.10.4",
+    "braintree-jsdoc-template": "^3.3.0",
+    "docdash": "^1.2.0",
     "doxdox": "^3.0.0",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
