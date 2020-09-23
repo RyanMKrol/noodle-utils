@@ -45,49 +45,6 @@ Constructor for error
 
 
 
-### src/errors/InvalidQueueReadItem.js
-
-
-#### new InvalidQueueReadItem() 
-
-Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
-
-
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-#### InvalidQueueReadItem.constructor(params) 
-
-Constructor for error
-
-
-
-
-##### Parameters
-
-| Name | Type | Description |  |
-| ---- | ---- | ----------- | -------- |
-| params | `any`  | Any params that need to be passed to parent | &nbsp; |
-
-
-
-
-##### Returns
-
-
-- `Void`
-
-
-
-
 ### src/errors/SizeExceeded.js
 
 
@@ -131,12 +88,28 @@ Constructor of error
 
 
 
-### src/methods/isUndefined.js
+### src/errors/InvalidQueueReadItem.js
 
 
-#### isUndefined(value) 
+#### new InvalidQueueReadItem() 
 
-Helper method to determine if a value is undefined or not
+Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
+
+
+
+
+
+
+##### Returns
+
+
+- `Void`
+
+
+
+#### InvalidQueueReadItem.constructor(params) 
+
+Constructor for error
 
 
 
@@ -145,7 +118,7 @@ Helper method to determine if a value is undefined or not
 
 | Name | Type | Description |  |
 | ---- | ---- | ----------- | -------- |
-| value | `any`  | The value to check | &nbsp; |
+| params | `any`  | Any params that need to be passed to parent | &nbsp; |
 
 
 
@@ -153,7 +126,7 @@ Helper method to determine if a value is undefined or not
 ##### Returns
 
 
-- `boolean`  Whether the value is undefined or not
+- `Void`
 
 
 
@@ -509,6 +482,33 @@ Method to push items to our queue
 
 
 -  Nothing
+
+
+
+
+### src/methods/isUndefined.js
+
+
+#### isUndefined(value) 
+
+Helper method to determine if a value is undefined or not
+
+
+
+
+##### Parameters
+
+| Name | Type | Description |  |
+| ---- | ---- | ----------- | -------- |
+| value | `any`  | The value to check | &nbsp; |
+
+
+
+
+##### Returns
+
+
+- `boolean`  Whether the value is undefined or not
 
 
 
