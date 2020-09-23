@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "build": "npm run lint && shx rm -rf build && ./node_modules/.bin/babel src --out-dir build",
-    "docs": "doxdox 'src/**/*.js' --layout markdown --output README.md",
+    "docs": "rm -rf docs && jsdoc -d docs -c jsdoc.json",
     "lint": "eslint src/ --ext .js"
   },
   "husky": {
@@ -33,13 +33,12 @@
     "@babel/preset-env": "^7.10.4",
     "braintree-jsdoc-template": "^3.3.0",
     "docdash": "^1.2.0",
-    "doxdox": "^3.0.0",
     "eslint": "^7.4.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsdoc": "^30.4.1",
     "husky": "^4.2.5",
-    "jsdoc": "^3.6.5",
+    "jsdoc": "^3.6.6",
     "shx": "^0.3.2"
   }
 }

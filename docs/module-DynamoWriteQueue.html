@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: InvalidQueueReadItem</title>
+    <title>JSDoc: Module: DynamoWriteQueue</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: InvalidQueueReadItem</h1>
+    <h1 class="page-title">Module: DynamoWriteQueue</h1>
 
     
 
@@ -28,10 +28,6 @@
 
 <header>
     
-        <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-Errors.html">Errors</a></span>InvalidQueueReadItem<span class="signature">(&hellip;params)</span><span class="type-signature"></span></h2>
-        
-            <div class="class-description"><p>Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props</p></div>
         
     
 </header>
@@ -41,34 +37,64 @@
     
         
 
+        
     
-    <h2>Constructor</h2>
-    
+    </div>
 
-    
-    <h4 class="name" id="InvalidQueueReadItem"><span class="type-signature"></span>new InvalidQueueReadItem<span class="signature">(&hellip;params)</span><span class="type-signature"></span></h4>
     
 
     
 
+    
+        <h3 class="subsection-title">Classes</h3>
 
-
-<div class="description">
-    <p>Constructor of error</p>
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
+        <dl>
+            <dt><a href="module-DynamoWriteQueue-DynamoWriteQueue.html">DynamoWriteQueue</a></dt>
+            <dd></dd>
+        </dl>
     
 
-<table class="params">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id="~WriteQueueItem">WriteQueueItem</h4>
+
+
+
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
     <thead>
     <tr>
         
@@ -77,8 +103,6 @@
 
         <th>Type</th>
 
-        
-        <th>Attributes</th>
         
 
         
@@ -92,40 +116,51 @@
 
         <tr>
             
-                <td class="name"><code>params</code></td>
+                <td class="name"><code>item</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">any</span>
+<span class="param-type">object</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
 
-                
+            
 
+            <td class="description last"><p>The item to store in the database</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>callback</code></td>
+            
+
+            <td class="type">
+            
                 
-                    &lt;repeatable><br>
-                
-                </td>
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last"><p>Any params that need to be passed to parent</p></td>
+            <td class="description last"><p>The callback to call once the data has been read</p></td>
         </tr>
 
     
     </tbody>
 </table>
-
-
 
 
 
@@ -159,7 +194,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="errors_InvalidQueueReadItem.js.html">errors/InvalidQueueReadItem.js</a>, <a href="errors_InvalidQueueReadItem.js.html#line4">line 4</a>
+        <a href="classes_dynamo_DynamoWriteQueue.js.html">classes/dynamo/DynamoWriteQueue.js</a>, <a href="classes_dynamo_DynamoWriteQueue.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -175,39 +210,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
+            
     
 
     
