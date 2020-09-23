@@ -1,9 +1,8 @@
-/** @memberof methods */
-
 /**
  * Method to handle sequential tasks that rely on the output of the previous task
  *
  * @param {Array.<Function>} fns The functions you would like to run over the input
+ * @memberof module:Utilities
  * @returns {any} The result of the pipeline processing
  */
 const pipeline = (...fns) => (x) => fns.reduce((v, f) => v.then(f), Promise.resolve(x));
@@ -13,6 +12,7 @@ const pipeline = (...fns) => (x) => fns.reduce((v, f) => v.then(f), Promise.reso
  *
  * @param {Function} func The method you want to run in the pipeline
  * @param {...any} args The closure args you want to use in the method
+ * @memberof module:Utilities
  * @returns {Function} A method to be called with a new argumnet as well
  *  as those captured in the closure
  */

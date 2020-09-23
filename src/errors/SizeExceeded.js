@@ -1,5 +1,3 @@
-/** @memberof errors */
-
 /**
  * Used when the size of a write item to dynamo is too big
  */
@@ -7,6 +5,7 @@ class SizeExceeded extends Error {
   /**
    * Constructor of error
    *
+   * @memberof module:Errors
    * @param {...any} params Any params to be passed to the Error parent
    */
   constructor(...params) {
@@ -19,7 +18,7 @@ class SizeExceeded extends Error {
     }
 
     this.Error = 'SizeExceeded';
-    this.StatusCode = 500;
+    this.StatusCode = 400;
   }
 }
 

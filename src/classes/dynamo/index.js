@@ -1,5 +1,3 @@
-/** @module dynamo */
-
 /**
  * @typedef DynamoCredentials
  * @type {object}

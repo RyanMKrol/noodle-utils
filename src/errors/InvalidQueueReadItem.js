@@ -1,12 +1,11 @@
-/** @memberof errors */
-
 /**
  * Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
  */
 class InvalidQueueReadItem extends Error {
   /**
-   * Constructor for error
+   * Constructor of error
    *
+   * @memberof module:Errors
    * @param {...any} params Any params that need to be passed to parent
    */
   constructor(...params) {

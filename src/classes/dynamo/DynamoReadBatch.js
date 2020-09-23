@@ -1,4 +1,4 @@
-/** @memberof dynamo */
+/** @module DynamoReadBatch */
 
 import async from 'async';
 import DynamoDBWrapper from 'noodle-dynamo';
@@ -18,10 +18,8 @@ import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '.
 
 /**
  * Creates a new Queue for pushing data to Dynamo.
- *
- * @class
  */
-export default class DynamoReadBatch {
+class DynamoReadBatch {
   /**
    * Constructor for DynamoReadBatch
    *
@@ -71,3 +69,5 @@ export default class DynamoReadBatch {
     return data;
   }
 }
+
+export default DynamoReadBatch;

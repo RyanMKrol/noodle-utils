@@ -1,4 +1,4 @@
-/** @memberof dynamo */
+/** @module DynamoWriteQueue */
 
 import sizeof from 'sizeof';
 import DynamoDBWrapper from 'noodle-dynamo';
@@ -20,10 +20,8 @@ import {
 
 /**
  * Creates a new Queue for pushing data to Dynamo.
- *
- * @class
  */
-export default class DynamoWriteQueue {
+class DynamoWriteQueue {
   /**
    * Constructor for DynamoWriteQueue
    *
@@ -81,6 +79,7 @@ export default class DynamoWriteQueue {
    * Method to push items to dynamo. This will take a chunk of the current
    * queue, and execute writes to Dynamo for each
    *
+   * @private
    * @returns {void} Nothing
    */
   async persistBatch() {
@@ -97,3 +96,5 @@ export default class DynamoWriteQueue {
     }
   }
 }
+
+export default DynamoWriteQueue;

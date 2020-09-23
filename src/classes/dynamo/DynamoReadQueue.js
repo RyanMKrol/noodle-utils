@@ -1,4 +1,4 @@
-/** @memberof dynamo */
+/** @module DynamoReadQueue */
 
 import DynamoDBWrapper from 'noodle-dynamo';
 
@@ -23,8 +23,6 @@ import { isUndefined } from '../../methods';
 
 /**
  * Creates a new Queue for pushing data to Dynamo.
- *
- * @class
  */
 class DynamoReadQueue {
   /**
@@ -80,6 +78,7 @@ class DynamoReadQueue {
   /**
    * Method to read a batch of items from dynamo
    *
+   * @private
    * @returns {void} Nothing
    */
   async readBatch() {
@@ -112,6 +111,7 @@ class DynamoReadQueue {
 /**
  * Validates that an item pushed to the queue is valid
  *
+ * @private
  * @param {ReadItem} item Specifies what to read from the database
  */
 function validateItem(item) {
@@ -126,6 +126,7 @@ function validateItem(item) {
 /**
  * Validates that the callback fulfils the requirements for a read
  *
+ * @private
  * @param {Function} callback The method to validate
  */
 function validateCallback(callback) {
