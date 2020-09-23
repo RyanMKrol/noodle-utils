@@ -43,7 +43,7 @@ class DynamoWriteQueue {
   /**
    * Method to push items to our queue
    *
-   * @param {object} item Any item that we want to push to Dynamo
+   * @param {module:DynamoReadBatch.WriteQueueItem} item Any item that we want to push to Dynamo
    * @param {?Function} callback A method to call once the item has been stored
    * @returns {void} Nothing
    */
@@ -58,7 +58,8 @@ class DynamoWriteQueue {
   /**
    * Method to push items to our queue
    *
-   * @param {Array.<object>} batch A batch of items to push into the queue
+   * @param {Array.<module:DynamoReadBatch.WriteQueueItem>} batch A batch of items
+   *  to push into the queue
    * @param {?Function} callback A method to call once the item has been stored
    * @returns {void} Nothing
    */

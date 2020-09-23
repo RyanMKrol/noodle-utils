@@ -15,13 +15,6 @@ import { isUndefined } from '../../methods';
  */
 
 /**
- * @typedef ReadQueueItem
- * @type {object}
- * @property {ReadItem} readItem The item to be read from the database
- * @property {Function} callback The callback to call once the data has been read
- */
-
-/**
  * Creates a new Queue for pushing data to Dynamo.
  */
 class DynamoReadQueue {
@@ -46,7 +39,7 @@ class DynamoReadQueue {
   /**
    * Pushes item to be read into the queue
    *
-   * @param {ReadItem} item An item to be read from Dynamo
+   * @param {module:DynamoReadQueue.ReadItem} item An item to be read from Dynamo
    * @param {Function} callback The method to be called once the item has been read
    */
   push(item, callback) {
@@ -59,7 +52,7 @@ class DynamoReadQueue {
   /**
    * Method to push items to our queue
    *
-   * @param {Array.<ReadItem>} batch A batch of items to push into the queue
+   * @param {Array.<module:DynamoReadQueue.ReadItem>} batch A batch of items to push into the queue
    * @param {Function} callback A method to be called for each read item
    * @returns {void} Nothing
    */
@@ -112,7 +105,7 @@ class DynamoReadQueue {
  * Validates that an item pushed to the queue is valid
  *
  * @private
- * @param {ReadItem} item Specifies what to read from the database
+ * @param {module:DynamoReadQueue.ReadItem} item Specifies what to read from the database
  */
 function validateItem(item) {
   if (isUndefined(item.expression)) {

@@ -35,7 +35,8 @@ class DynamoReadBatch {
   /**
    * Method to read items from Dynamo
    *
-   * @param {Array.<ReadBatchItem>} readItems Items to read from the Dynamo table
+   * @param {Array.<module:DynamoReadBatch.ReadBatchItem>} readItems Items to read
+   *  from the Dynamo table
    * @returns {object.<any>} An object containing the read data
    */
   async readItems(readItems) {
