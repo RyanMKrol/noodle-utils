@@ -1,6 +1,11 @@
 import {
-  pipeline, pipelineClosureMethod, sleep, isUndefined,
+  pipeline,
+  pipelineClosureMethod,
+  shortCircuitPipeline,
+  sleep,
+  isUndefined,
 } from './methods';
+
 import {
   DynamoDeleteQueue,
   DynamoReadBatch,
@@ -11,6 +16,7 @@ import {
 export {
   pipeline,
   pipelineClosureMethod,
+  shortCircuitPipeline,
   sleep,
   isUndefined,
   DynamoDeleteQueue,

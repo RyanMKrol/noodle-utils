@@ -20,4 +20,16 @@ function pipelineClosureMethod(func, ...args) {
   return async (x) => func(x, ...args);
 }
 
-export { pipeline, pipelineClosureMethod };
+/**
+ * Method to handle sequential tasks that all act on the same value, short circuiting when
+ * one returns true
+ *
+ * @param {Array.<Function>} fns Array of functions to run over single value
+ * @returns {void} Nothing
+ */
+const shortCircuitPipeline = (...fns) => (val) => fns.reduce(
+  async (current, fn) => current.then((value) => value || fn(val)),
+  Promise.resolve(false),
+);
+
+export { pipeline, pipelineClosureMethod, shortCircuitPipeline };
