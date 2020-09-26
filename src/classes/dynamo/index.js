@@ -5,6 +5,7 @@
  * @property {string} secretAccessKey The access key for your dynamo table
  */
 
+export { default as DynamoDeleteQueue } from './DynamoDeleteQueue';
 export { default as DynamoReadBatch } from './DynamoReadBatch';
 export { default as DynamoReadQueue } from './DynamoReadQueue';
 export { default as DynamoWriteQueue } from './DynamoWriteQueue';
