@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: classes/dynamo/DynamoWriteQueue.js</title>
+    <title>JSDoc: Source: classes/dynamo/DynamoDeleteQueue.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: classes/dynamo/DynamoWriteQueue.js</h1>
+    <h1 class="page-title">Source: classes/dynamo/DynamoDeleteQueue.js</h1>
 
     
 
@@ -26,36 +26,27 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/** @module DynamoWriteQueue */
+            <pre class="prettyprint source linenums"><code>/** @module DynamoDeleteQueue */
 
-import sizeof from 'sizeof';
 import DynamoDBWrapper from 'noodle-dynamo';
 
-import { SizeExceeded } from '../../errors';
-
-import {
-  PROVISIONED_CAPACITY_UNITS,
-  SINGLE_CAPACITY_UNIT_USED_TIME_MS,
-  MAX_WRITE_DATA_SIZE_BYTES,
-} from '../../constants';
+import { PROVISIONED_CAPACITY_UNITS, SINGLE_CAPACITY_UNIT_USED_TIME_MS } from '../../constants';
 
 /**
- * @typedef WriteQueueItem
+ * @typedef DeleteQueueItem
  * @type {object}
- * @property {object} item The item to store in the database
- * @property {Function} callback The callback to call once the data has been read
  */
 
 /**
- * Creates a new Queue for pushing data to Dynamo.
+ * Creates a new Queue for removing data from Dynamo.
  */
-class DynamoWriteQueue {
+class DynamoDeleteQueue {
   /**
-   * Constructor for DynamoWriteQueue
+   * Constructor for DynamoDeleteQueue
    *
    * @param {module:dynamo.DynamoCredentials} dynamoCredentials The credentials for a Dynamo table
    * @param {string} dynamoRegion The region of the Dynamo table we're using
-   * @param {string} tableName The name of the table we want to store data in
+   * @param {string} tableName The name of the table we want to remove data from
    */
   constructor(dynamoCredentials, dynamoRegion, tableName) {
     this.dynamoClient = new DynamoDBWrapper(dynamoCredentials, dynamoRegion);
@@ -64,38 +55,30 @@ class DynamoWriteQueue {
 
     // setup the event queue
     setInterval(async () => {
-      await this.persistBatch();
+      await this.deleteBatch();
     }, SINGLE_CAPACITY_UNIT_USED_TIME_MS);
   }
 
   /**
    * Method to push items to our queue
    *
-   * @param {module:DynamoWriteQueue.WriteQueueItem} item Any item that we want to push to Dynamo
-   * @param {?Function} callback A method to call once the item has been stored
+   * @param {module:DynamoDeleteQueue.DeleteQueueItem} item Any item that we want to delete
+   * @param {?Function} callback A method to call once the item has been deleted
    * @returns {void} Nothing
    */
   push(item, callback) {
-    if (sizeof.sizeof(item) &lt; MAX_WRITE_DATA_SIZE_BYTES) {
-      this.queue.push({ item, callback });
-    } else {
-      throw new SizeExceeded();
-    }
+    this.queue.push({ item, callback });
   }
 
   /**
    * Method to push items to our queue
    *
-   * @param {Array.&lt;module:DynamoWriteQueue.WriteQueueItem>} batch A batch of items
-   *  to push into the queue
-   * @param {?Function} callback A method to call once the item has been stored
+   * @param {Array.&lt;module:DynamoDeleteQueue.DeleteQueueItem>} batch A batch of items
+   *  to delete from the db
+   * @param {?Function} callback A method to call once the item has been deleted
    * @returns {void} Nothing
    */
   pushBatch(batch, callback) {
-    if (batch.some((x) => sizeof.sizeof(x) > MAX_WRITE_DATA_SIZE_BYTES)) {
-      throw new SizeExceeded();
-    }
-
     const batchWithCallbacks = batch.map((item) => ({
       item,
       callback,
@@ -105,18 +88,18 @@ class DynamoWriteQueue {
   }
 
   /**
-   * Method to push items to dynamo. This will take a chunk of the current
-   * queue, and execute writes to Dynamo for each
+   * Method to delete items from dynamo. This will take a chunk of the current
+   * queue, and execute deletes in Dynamo for each
    *
    * @private
    * @returns {void} Nothing
    */
-  async persistBatch() {
+  async deleteBatch() {
     if (this.queue.length > 0) {
       const batch = this.queue.splice(0, PROVISIONED_CAPACITY_UNITS);
 
       batch.forEach(async (queueItem) => {
-        this.dynamoClient.writeTable(this.tableName, queueItem.item).then((result) => {
+        this.dynamoClient.deleteItemFromTable(this.tableName, queueItem.item).then((result) => {
           if (queueItem.callback) {
             queueItem.callback(result);
           }
@@ -126,7 +109,7 @@ class DynamoWriteQueue {
   }
 }
 
-export default DynamoWriteQueue;
+export default DynamoDeleteQueue;
 </code></pre>
         </article>
     </section>

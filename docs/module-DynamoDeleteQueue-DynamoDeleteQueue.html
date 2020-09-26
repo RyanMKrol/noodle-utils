@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DynamoWriteQueue</title>
+    <title>JSDoc: Class: DynamoDeleteQueue</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DynamoWriteQueue</h1>
+    <h1 class="page-title">Class: DynamoDeleteQueue</h1>
 
     
 
@@ -29,9 +29,9 @@
 <header>
     
         <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-DynamoWriteQueue.html">DynamoWriteQueue</a>~</span>DynamoWriteQueue<span class="signature">(dynamoCredentials, dynamoRegion, tableName)</span><span class="type-signature"></span></h2>
+            <span class="ancestors"><a href="module-DynamoDeleteQueue.html">DynamoDeleteQueue</a>~</span>DynamoDeleteQueue<span class="signature">(dynamoCredentials, dynamoRegion, tableName)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Creates a new Queue for pushing data to Dynamo.</p></div>
+            <div class="class-description"><p>Creates a new Queue for removing data from Dynamo.</p></div>
         
     
 </header>
@@ -46,7 +46,7 @@
     
 
     
-    <h4 class="name" id="DynamoWriteQueue"><span class="type-signature"></span>new DynamoWriteQueue<span class="signature">(dynamoCredentials, dynamoRegion, tableName)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="DynamoDeleteQueue"><span class="type-signature"></span>new DynamoDeleteQueue<span class="signature">(dynamoCredentials, dynamoRegion, tableName)</span><span class="type-signature"></span></h4>
     
 
     
@@ -54,7 +54,7 @@
 
 
 <div class="description">
-    <p>Constructor for DynamoWriteQueue</p>
+    <p>Constructor for DynamoDeleteQueue</p>
 </div>
 
 
@@ -152,7 +152,7 @@
 
             
 
-            <td class="description last"><p>The name of the table we want to store data in</p></td>
+            <td class="description last"><p>The name of the table we want to remove data from</p></td>
         </tr>
 
     
@@ -193,7 +193,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_dynamo_DynamoWriteQueue.js.html">classes/dynamo/DynamoWriteQueue.js</a>, <a href="classes_dynamo_DynamoWriteQueue.js.html#line24">line 24</a>
+        <a href="classes_dynamo_DynamoDeleteQueue.js.html">classes/dynamo/DynamoDeleteQueue.js</a>, <a href="classes_dynamo_DynamoDeleteQueue.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -301,7 +301,7 @@
             <td class="type">
             
                 
-<span class="param-type">module:DynamoWriteQueue.WriteQueueItem</span>
+<span class="param-type">module:DynamoDeleteQueue.DeleteQueueItem</span>
 
 
             
@@ -319,7 +319,7 @@
 
             
 
-            <td class="description last"><p>Any item that we want to push to Dynamo</p></td>
+            <td class="description last"><p>Any item that we want to delete</p></td>
         </tr>
 
     
@@ -352,7 +352,7 @@
 
             
 
-            <td class="description last"><p>A method to call once the item has been stored</p></td>
+            <td class="description last"><p>A method to call once the item has been deleted</p></td>
         </tr>
 
     
@@ -393,7 +393,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_dynamo_DynamoWriteQueue.js.html">classes/dynamo/DynamoWriteQueue.js</a>, <a href="classes_dynamo_DynamoWriteQueue.js.html#line50">line 50</a>
+        <a href="classes_dynamo_DynamoDeleteQueue.js.html">classes/dynamo/DynamoDeleteQueue.js</a>, <a href="classes_dynamo_DynamoDeleteQueue.js.html#line41">line 41</a>
     </li></ul></dd>
     
 
@@ -503,7 +503,7 @@
             <td class="type">
             
                 
-<span class="param-type">Array.&lt;module:DynamoWriteQueue.WriteQueueItem></span>
+<span class="param-type">Array.&lt;module:DynamoDeleteQueue.DeleteQueueItem></span>
 
 
             
@@ -522,7 +522,7 @@
             
 
             <td class="description last"><p>A batch of items
-to push into the queue</p></td>
+to delete from the db</p></td>
         </tr>
 
     
@@ -555,7 +555,7 @@ to push into the queue</p></td>
 
             
 
-            <td class="description last"><p>A method to call once the item has been stored</p></td>
+            <td class="description last"><p>A method to call once the item has been deleted</p></td>
         </tr>
 
     
@@ -596,7 +596,7 @@ to push into the queue</p></td>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="classes_dynamo_DynamoWriteQueue.js.html">classes/dynamo/DynamoWriteQueue.js</a>, <a href="classes_dynamo_DynamoWriteQueue.js.html#line66">line 66</a>
+        <a href="classes_dynamo_DynamoDeleteQueue.js.html">classes/dynamo/DynamoDeleteQueue.js</a>, <a href="classes_dynamo_DynamoDeleteQueue.js.html#line53">line 53</a>
     </li></ul></dd>
     
 
