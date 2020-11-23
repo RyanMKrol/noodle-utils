@@ -37,6 +37,7 @@ async function startStatusIndicator(output) {
  */
 function stopStatusIndicator() {
   statusIndicatorRunning = false;
+  process.stdout.write('\n');
 }
 
 /**
