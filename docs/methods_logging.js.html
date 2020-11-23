@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: errors/InvalidQueueReadItem.js</title>
+    <title>JSDoc: Source: methods/logging.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: errors/InvalidQueueReadItem.js</h1>
+    <h1 class="page-title">Source: methods/logging.js</h1>
 
     
 
@@ -26,31 +26,59 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Used when an item is passed to the DynamoReadQueue that doesn't contain the corret props
+            <pre class="prettyprint source linenums"><code>/* eslint-disable no-await-in-loop */
+
+import * as readline from 'readline';
+import sleep from './sleep';
+
+let statusIndicatorRunning = false;
+/**
+ * Start the status indicator
+ *
+ * @param output The message to continue printing
  */
-class InvalidQueueReadItem extends Error {
-  /**
-   * Constructor of error
-   *
-   * @memberof module:Errors
-   * @param {...any} params Any params that need to be passed to parent
-   */
-  constructor(...params) {
-    // Pass remaining arguments (including vendor specific ones) to parent constructor
-    super(...params);
+async function startStatusIndicator(output) {
+  statusIndicatorRunning = true;
 
-    // Maintains proper stack trace for where our error was thrown (only available on V8)
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, InvalidQueueReadItem);
+  while (statusIndicatorRunning) {
+    if (statusIndicatorRunning) {
+      writeStatusOutput(`${output}`);
+      await sleep(500);
     }
-
-    this.Error = 'InvalidQueueReadItem';
-    this.StatusCode = 400;
+    if (statusIndicatorRunning) {
+      writeStatusOutput(`${output}.`);
+      await sleep(500);
+    }
+    if (statusIndicatorRunning) {
+      writeStatusOutput(`${output}..`);
+      await sleep(500);
+    }
+    if (statusIndicatorRunning) {
+      writeStatusOutput(`${output}...`);
+      await sleep(500);
+    }
   }
 }
 
-export default InvalidQueueReadItem;
+/**
+ * Stop the status indicator
+ */
+function stopStatusIndicator() {
+  statusIndicatorRunning = false;
+}
+
+/**
+ * Method to write to stdout such that it can be cleared later
+ *
+ * @param {string} output What to post to stdout
+ */
+function writeStatusOutput(output) {
+  readline.clearLine(process.stdout, 0);
+  readline.cursorTo(process.stdout, 0, null);
+  process.stdout.write(output);
+}
+
+export { startStatusIndicator, stopStatusIndicator };
 </code></pre>
         </article>
     </section>

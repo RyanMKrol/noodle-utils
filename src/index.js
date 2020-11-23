@@ -4,6 +4,8 @@ import {
   shortCircuitPipeline,
   sleep,
   isUndefined,
+  startStatusIndicator,
+  stopStatusIndicator,
 } from './methods';
 
 import {
@@ -19,6 +21,8 @@ export {
   shortCircuitPipeline,
   sleep,
   isUndefined,
+  startStatusIndicator,
+  stopStatusIndicator,
   DynamoDeleteQueue,
   DynamoReadBatch,
   DynamoWriteQueue,
