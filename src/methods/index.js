@@ -3,4 +3,4 @@
 export { default as sleep } from './sleep';
 export { pipeline, pipelineClosureMethod, shortCircuitPipeline } from './pipeline';
 export { default as isUndefined } from './isUndefined';
-export { startStatusIndicator, stopStatusIndicator } from './logging';
+export { startStatusIndicator, stopStatusIndicator, logger } from './logging';

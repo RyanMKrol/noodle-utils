@@ -6,6 +6,7 @@ import {
   isUndefined,
   startStatusIndicator,
   stopStatusIndicator,
+  logger,
 } from './methods';
 
 import {
@@ -23,6 +24,7 @@ export {
   isUndefined,
   startStatusIndicator,
   stopStatusIndicator,
+  logger,
   DynamoDeleteQueue,
   DynamoReadBatch,
   DynamoWriteQueue,
