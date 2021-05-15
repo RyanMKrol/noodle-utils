@@ -12,8 +12,9 @@ import {
 import {
   DynamoDeleteQueue,
   DynamoReadBatch,
-  DynamoWriteQueue,
   DynamoReadQueue,
+  DynamoScan,
+  DynamoWriteQueue,
 } from './classes/dynamo';
 
 export {
@@ -27,6 +28,7 @@ export {
   logger,
   DynamoDeleteQueue,
   DynamoReadBatch,
-  DynamoWriteQueue,
   DynamoReadQueue,
+  DynamoScan,
+  DynamoWriteQueue,
 };
