@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: DataNotFound</title>
+    <title>JSDoc: Class: DynamoScan</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: DataNotFound</h1>
+    <h1 class="page-title">Class: DynamoScan</h1>
 
     
 
@@ -29,9 +29,9 @@
 <header>
     
         <h2><span class="attribs"><span class="type-signature"></span></span>
-            <span class="ancestors"><a href="module-Errors.html">Errors</a></span>DataNotFound<span class="signature">(&hellip;params)</span><span class="type-signature"></span></h2>
+            <span class="ancestors"><a href="module-DynamoScan.html">DynamoScan</a>~</span>DynamoScan<span class="signature">(dynamoCredentials, dynamoRegion)</span><span class="type-signature"></span></h2>
         
-            <div class="class-description"><p>Used when an item isn't found in Dynamo on read</p></div>
+            <div class="class-description"><p>Creates a class to scan Dynamo tables</p></div>
         
     
 </header>
@@ -46,7 +46,7 @@
     
 
     
-    <h4 class="name" id="DataNotFound"><span class="type-signature"></span>new DataNotFound<span class="signature">(&hellip;params)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="DynamoScan"><span class="type-signature"></span>new DynamoScan<span class="signature">(dynamoCredentials, dynamoRegion)</span><span class="type-signature"></span></h4>
     
 
     
@@ -54,7 +54,7 @@
 
 
 <div class="description">
-    <p>Constructor of error</p>
+    <p>Constructor for DynamoScan</p>
 </div>
 
 
@@ -78,8 +78,6 @@
         <th>Type</th>
 
         
-        <th>Attributes</th>
-        
 
         
 
@@ -92,33 +90,46 @@
 
         <tr>
             
-                <td class="name"><code>params</code></td>
+                <td class="name"><code>dynamoCredentials</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">any</span>
+<span class="param-type">module:dynamo.DynamoCredentials</span>
 
 
             
             </td>
 
             
-                <td class="attributes">
-                
 
-                
+            
 
+            <td class="description last"><p>The credentials for a Dynamo table</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>dynamoRegion</code></td>
+            
+
+            <td class="type">
+            
                 
-                    &lt;repeatable><br>
-                
-                </td>
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
             
 
             
 
-            <td class="description last"><p>Any params that need to be passed to parent</p></td>
+            <td class="description last"><p>The region of the Dynamo table we're using</p></td>
         </tr>
 
     
@@ -159,7 +170,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="errors_DataNotFound.js.html">errors/DataNotFound.js</a>, <a href="errors_DataNotFound.js.html#line4">line 4</a>
+        <a href="classes_dynamo_DynamoScan.js.html">classes/dynamo/DynamoScan.js</a>, <a href="classes_dynamo_DynamoScan.js.html#line8">line 8</a>
     </li></ul></dd>
     
 
@@ -206,6 +217,169 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="scanTable"><span class="type-signature">(async) </span>scanTable<span class="signature">(tableName)</span><span class="type-signature"> &rarr; {Promise.&lt;object.&lt;any>>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Method to scan table in Dynamo</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>tableName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Table to scan</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="classes_dynamo_DynamoScan.js.html">classes/dynamo/DynamoScan.js</a>, <a href="classes_dynamo_DynamoScan.js.html#line25">line 25</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    <p>An object containing the read data</p>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;object.&lt;any>></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
     
 
     

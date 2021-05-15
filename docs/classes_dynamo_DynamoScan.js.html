@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: methods/isUndefined.js</title>
+    <title>JSDoc: Source: classes/dynamo/DynamoScan.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: methods/isUndefined.js</h1>
+    <h1 class="page-title">Source: classes/dynamo/DynamoScan.js</h1>
 
     
 
@@ -26,18 +26,36 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Helper method to determine if a value is undefined or not
- *
- * @param {any} value The value to check
- * @memberof module:Utilities
- * @returns {boolean} Whether the value is undefined or not
+            <pre class="prettyprint source linenums"><code>/** @module DynamoScan */
+
+import DynamoDBWrapper from 'noodle-dynamo';
+
+/**
+ * Creates a class to scan Dynamo tables
  */
-function isUndefined(value) {
-  return typeof value === 'undefined' || value === null;
+class DynamoScan {
+  /**
+   * Constructor for DynamoScan
+   *
+   * @param {module:dynamo.DynamoCredentials} dynamoCredentials The credentials for a Dynamo table
+   * @param {string} dynamoRegion The region of the Dynamo table we're using
+   */
+  constructor(dynamoCredentials, dynamoRegion) {
+    this.dynamoClient = new DynamoDBWrapper(dynamoCredentials, dynamoRegion);
+  }
+
+  /**
+   * Method to scan table in Dynamo
+   *
+   * @param {string} tableName Table to scan
+   * @returns {Promise&lt;object.&lt;any>>} An object containing the read data
+   */
+  async scanTable(tableName) {
+    return this.dynamoClient.scanTable(tableName);
+  }
 }
 
-export default isUndefined;
+export default DynamoScan;
 </code></pre>
         </article>
     </section>

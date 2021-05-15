@@ -25,7 +25,7 @@
     "async": "^3.2.0",
     "core-js": "^3.6.5",
     "debug": "^4.3.1",
-    "noodle-dynamo": "^1.0.6",
+    "noodle-dynamo": "^1.2.0",
     "sizeof": "^1.0.0"
   },
   "devDependencies": {
